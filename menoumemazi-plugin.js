@@ -6,11 +6,19 @@ fetch('https://menoumemazi.org/wp-content/themes/ekko-child/js/react/prod/')
         }
     ).then(
         (html) => {
+            var head = document.getElementsByTagName('head')[0];
+            
+            // creating a new script link in the native DOM
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'site.css'; // the needed css file
+            link.media = 'all';
+            head.appendChild(link);
 
             var doc = new DOMParser().parseFromString(html, 'text/html');
 
             // making a new script in the native html DOM
-            var head = document.getElementsByTagName('head')[0];
             var script = document.createElement('script');
             script.type = 'text/javascript';
 
